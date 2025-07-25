@@ -1,0 +1,266 @@
+import React, { useState } from 'react';
+import { Home, Menu, X, Feather, Eye, Heart, Share2, Calendar, User } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const App = () => {
+const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+const blogPosts = [
+{
+id: 1,
+title: "The Zen of Minimalist Birdhouses",
+excerpt: "Discover how clean lines and natural materials create the perfect sanctuary for urban birds.",
+image: "https://placehold.co/600x400/8B7355/F5F5DC",
+date: "March 15, 2024",
+author: "Sage Nestworth",
+readTime: "4 min read",
+category: "Design Philosophy"
+},
+{
+id: 2,
+title: "Feng Shui Principles for Avian Architecture",
+excerpt: "Ancient wisdom meets modern design in creating harmonious spaces for our feathered friends.",
+image: "https://placehold.co/600x400/A0A0A0/FFFFFF",
+date: "March 12, 2024",
+author: "Li Wing",
+readTime: "6 min read",
+category: "Feng Shui"
+},
+{
+id: 3,
+title: "Material Matters: Sustainable Wood Selection",
+excerpt: "Choosing the right sustainable materials for longevity and environmental harmony.",
+image: "https://placehold.co/600x400/8B4513/F5DEB3",
+date: "March 10, 2024",
+author: "Eco Builder",
+readTime: "5 min read",
+category: "Materials"
+},
+{
+id: 4,
+title: "Geometry of Flight: Architectural Forms",
+excerpt: "How geometric principles influence the functionality and aesthetic of birdhouse design.",
+image: "https://placehold.co/600x400/2F4F4F/E0FFFF",
+date: "March 8, 2024",
+author: "Form Architect",
+readTime: "7 min read",
+category: "Geometry"
+}
+];
+
+const featuredPost = {
+title: "Biophilic Design for Urban Birds",
+excerpt: "Integrating natural elements into minimalist birdhouse design to promote well-being and connection with nature.",
+image: "https://placehold.co/800x500/556B2F/F0FFF0",
+date: "March 18, 2024",
+author: "Nature Integrator",
+readTime: "8 min read"
+};
+
+return (
+<div className="min-h-screen bg-stone-50">
+   {/* Header */}
+   <header className="bg-white border-b border-stone-200 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2">
+               <Feather className="h-8 w-8 text-stone-700" />
+               <h1 className="text-xl font-light tracking-wide text-stone-800">AVIAN ARCHITECT</h1>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex space-x-8">
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">Home</a>
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">Design</a>
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">Philosophy</a>
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">Gallery</a>
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">About</a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button className="md:hidden" onClick={()=> setIsMenuOpen(!isMenuOpen)}
+               >
+               {isMenuOpen ?
+               <X className="h-6 w-6" /> :
+               <Menu className="h-6 w-6" />}
+            </button>
+         </div>
+
+         {/* Mobile Navigation */}
+         {isMenuOpen && (
+         <motion.div className="md:hidden py-4 border-t border-stone-200" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}>
+            <nav className="flex flex-col space-y-3">
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">Home</a>
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">Design</a>
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">Philosophy</a>
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">Gallery</a>
+               <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors">About</a>
+            </nav>
+         </motion.div>
+         )}
+      </div>
+   </header>
+
+   {/* Hero Section */}
+   <section className="relative h-96 bg-stone-900 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-stone-900/80 to-stone-800/40"></div>
+      <img src="https://placehold.co/1200x600/2C3E50/ECF0F1" alt="Minimalist Birdhouse" className="w-full h-full object-cover mix-blend-overlay" />
+      <div className="absolute inset-0 flex items-center justify-center">
+         <div className="text-center text-white max-w-3xl px-4">
+            <motion.h2 className="text-4xl md:text-6xl font-light mb-6 tracking-wide" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+               Modernist Avian Design
+            </motion.h2>
+            <motion.p className="text-lg md:text-xl font-light opacity-90" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+               Clean lines, neutral palettes, and feng shui for finches
+            </motion.p>
+         </div>
+      </div>
+   </section>
+
+   {/* Featured Post */}
+   <section className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div className="text-center mb-12">
+            <h2 className="text-3xl font-light text-stone-800 mb-4">Featured Article</h2>
+            <div className="w-20 h-px bg-stone-300 mx-auto"></div>
+         </div>
+
+         <motion.div className="grid md:grid-cols-2 gap-12 items-center" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div>
+               <img src={featuredPost.image} alt={featuredPost.title} className="w-full h-80 object-cover rounded-sm" />
+            </div>
+            <div className="space-y-6">
+               <div className="flex items-center space-x-4 text-sm text-stone-500">
+                  <span>{featuredPost.date}</span>
+                  <span>•</span>
+                  <span>{featuredPost.readTime}</span>
+               </div>
+               <h3 className="text-2xl font-light text-stone-800 leading-tight">
+                  {featuredPost.title}
+               </h3>
+               <p className="text-stone-600 leading-relaxed">
+                  {featuredPost.excerpt}
+               </p>
+               <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                     <User className="h-4 w-4 text-stone-400" />
+                     <span className="text-stone-600">{featuredPost.author}</span>
+                  </div>
+                  <button className="flex items-center space-x-2 text-stone-600 hover:text-stone-800 transition-colors">
+                     <Eye className="h-4 w-4" />
+                     <span>Read More</span>
+                  </button>
+               </div>
+            </div>
+         </motion.div>
+      </div>
+   </section>
+
+   {/* Blog Posts Grid */}
+   <section className="py-16 bg-stone-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div className="text-center mb-12">
+            <h2 className="text-3xl font-light text-stone-800 mb-4">Latest Articles</h2>
+            <div className="w-20 h-px bg-stone-300 mx-auto"></div>
+         </div>
+
+         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {blogPosts.map((post, index) => (
+            <motion.article key={post.id} className="bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: index * 0.1 }}>
+               <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
+               <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                     <span className="text-xs font-medium text-stone-500 uppercase tracking-wide">
+                        {post.category}
+                     </span>
+                     <div className="flex items-center space-x-1 text-stone-400">
+                        <Calendar className="h-3 w-3" />
+                        <span className="text-xs">{post.date}</span>
+                     </div>
+                  </div>
+                  <h3 className="text-xl font-light text-stone-800 mb-3 leading-tight">
+                     {post.title}
+                  </h3>
+                  <p className="text-stone-600 mb-4 leading-relaxed">
+                     {post.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                     <div className="flex items-center space-x-2 text-stone-500">
+                        <User className="h-4 w-4" />
+                        <span className="text-sm">{post.author}</span>
+                     </div>
+                     <div className="flex items-center space-x-3">
+                        <button className="text-stone-400 hover:text-stone-600 transition-colors">
+                           <Heart className="h-4 w-4" />
+                        </button>
+                        <button className="text-stone-400 hover:text-stone-600 transition-colors">
+                           <Share2 className="h-4 w-4" />
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </motion.article>
+            ))}
+         </div>
+      </div>
+   </section>
+
+   {/* Newsletter Section */}
+   <section className="py-16 bg-stone-800">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+         <h2 className="text-3xl font-light text-white mb-4">Join Our Design Community</h2>
+         <p className="text-stone-300 mb-8 max-w-2xl mx-auto">
+            Subscribe to receive insights on minimalist avian architecture and exclusive design resources.
+         </p>
+         <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input type="email" placeholder="Your email address" className="flex-1 px-4 py-3 rounded-sm border border-stone-600 bg-stone-700 text-white placeholder-stone-400 focus:outline-none focus:border-stone-400" />
+            <button className="px-6 py-3 bg-white text-stone-800 font-medium rounded-sm hover:bg-stone-100 transition-colors">
+               Subscribe
+            </button>
+         </div>
+      </div>
+   </section>
+
+   {/* Footer */}
+   <footer className="bg-stone-900 text-stone-400 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div className="grid md:grid-cols-4 gap-8">
+            <div className="col-span-2">
+               <div className="flex items-center space-x-2 mb-4">
+                  <Feather className="h-6 w-6" />
+                  <h3 className="text-xl font-light text-white">AVIAN ARCHITECT</h3>
+               </div>
+               <p className="mb-4 max-w-md">
+                  Exploring the intersection of minimalist design and avian habitation.
+                  Creating spaces where form meets function for our feathered friends.
+               </p>
+            </div>
+            <div>
+               <h4 className="text-white font-medium mb-4">Categories</h4>
+               <ul className="space-y-2">
+                  <li><a href="#" className="hover:text-white transition-colors">Design Philosophy</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Materials</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Feng Shui</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Geometry</a></li>
+               </ul>
+            </div>
+            <div>
+               <h4 className="text-white font-medium mb-4">Connect</h4>
+               <ul className="space-y-2">
+                  <li><a href="#" className="hover:text-white transition-colors">About</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Gallery</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Newsletter</a></li>
+               </ul>
+            </div>
+         </div>
+         <div className="border-t border-stone-800 mt-8 pt-8 text-center">
+            <p>© 2024 Avian Architect. All rights reserved.</p>
+         </div>
+      </div>
+   </footer>
+</div>
+);
+};
+
+export default App;
